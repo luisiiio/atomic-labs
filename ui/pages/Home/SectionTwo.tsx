@@ -3,6 +3,9 @@ import styled from "styled-components";
 const SectionTwo = styled.section`
   height: 100vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-image: url("/bgblue.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -28,6 +31,9 @@ const SectionTwo = styled.section`
   @media (${({ theme }) => theme.device.md}) {
     h1 {
       font-size: 4rem;
+    }
+    section {
+      margin-top: 5rem;
     }
   }
   @media (${({ theme }) => theme.device.lg}) {
