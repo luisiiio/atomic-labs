@@ -50,7 +50,7 @@ const SectionOne = styled.section`
     }
   }
 
-  @media (min-width: 568px) {
+  @media (${({ theme }) => theme.device.sm}) {
     .top {
       h1 {
         font-size: 3.5rem;
@@ -62,7 +62,7 @@ const SectionOne = styled.section`
       }
     }
   }
-  @media (min-width: 768px) {
+  @media (${({ theme }) => theme.device.md}) {
     padding: 0 10%;
     .top {
       flex-direction: row-reverse;
@@ -75,7 +75,7 @@ const SectionOne = styled.section`
       }
     }
   }
-  @media (min-width: 1024px) {
+  @media (${({ theme }) => theme.device.lg}) {
     .top {
       .message {
         h1 {
@@ -84,7 +84,7 @@ const SectionOne = styled.section`
       }
     }
   }
-  @media (min-width: 1281px) {
+  @media (${({ theme }) => theme.device.xl}) {
     .top {
       .message {
         h1 {
