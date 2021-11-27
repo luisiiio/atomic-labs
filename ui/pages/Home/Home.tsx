@@ -9,6 +9,7 @@ import SectionOne from "./SectionOne";
 import SectionTwo from "./SectionTwo";
 import SectionThree from "./SectionThree";
 import SectionFour from "./SectionFour";
+import SectionFive from "./SectionFive";
 
 import sec1img1 from "public/sec1img1.png";
 import arrowdown from "public/arrowdown.png";
@@ -180,6 +181,65 @@ const Home = () => {
           </article>
         </div>
       </SectionFour>
+      <SectionFive>
+        <article>
+          <p className="header">
+            <b>CARACTERÍSTICAS</b>
+          </p>
+          <p className="header bl">
+            <b>OTROS</b>
+          </p>
+          <p className="header bl bg atomic-column">
+            <b>ATOMIC</b>
+          </p>
+          <p className="bb br text-align">
+            Equipo inclusivo, honesto y auténtico
+          </p>
+          <p className="center bb br">
+            <Image src={check} alt="icon check" width={30} height={30} />
+          </p>
+          <p className="center bb bg">
+            <Image src={check} alt="icon check" width={30} height={30} />
+          </p>
+          <p className="bb br text-align">
+            Puntualidad es nuestro segundo nombre
+          </p>
+          <p className="center bb br">
+            <Image src={check} alt="icon check" width={30} height={30} />
+          </p>
+          <p className="center bb bg">
+            <Image src={check} alt="icon check" width={30} height={30} />
+          </p>
+          <p className="bb br text-align">
+            Siempre innovamos en nuestros productos
+          </p>
+          <p className="center bb br">
+            <Image src={check} alt="icon check" width={30} height={30} />
+          </p>
+          <p className="center bb bg">
+            <Image src={check} alt="icon check" width={30} height={30} />
+          </p>
+          <p className="bb br text-align">
+            Te ayudamos a crecer e implementar nuevos conocimientos
+          </p>
+          <p className="bb br"></p>
+          <p className="center bb bg">
+            <Image src={check} alt="icon check" width={30} height={30} />
+          </p>
+          <p className="bb br text-align">Nos preocupamos por tu bienestar</p>
+          <p className="bb br"></p>
+          <p className="center bb bg">
+            <Image src={check} alt="icon check" width={30} height={30} />
+          </p>
+          <p className="br text-align">El respeto es una parte fundamental</p>
+          <p className="br"></p>
+          <p className="center bg">
+            <Image src={check} alt="icon check" width={30} height={30} />
+          </p>
+        </article>
+
+        <Button onClick={sendToApplication}>¡Quiero ser parte!</Button>
+      </SectionFive>
     </>
   );
 };
