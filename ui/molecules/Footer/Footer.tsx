@@ -8,33 +8,31 @@ const Footer = () => {
   return (
     <FooterStyled>
       <p>© 2020 AtomicLabs. Todos los derechos reservados.</p>
-      <p>
+      <section>
         <span>Aviso de privacidad</span>
-        <a
-          href="https://www.linkedin.com/company/atomic-mexico/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Image
-            src={linkedin}
-            alt="Picture of the author"
-            width={30}
-            height={30}
-          />
-        </a>
-        <a
-          href="https://twitter.com/AtomicMexico"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Image
-            src={twitter}
-            alt="Picture of the author"
-            width={30}
-            height={30}
-          />
-        </a>
-      </p>
+        <div>
+          <article>
+            <a
+              className="icon-rss"
+              href="https://www.linkedin.com/company/atomic-mexico/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image src={linkedin} alt="linkedin" layout="responsive" />
+            </a>
+          </article>
+          <article>
+            <a
+              className="icon-rss"
+              href="https://twitter.com/AtomicMexico"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image src={twitter} alt="twitter" layout="responsive" />
+            </a>
+          </article>
+        </div>
+      </section>
     </FooterStyled>
   );
 };
