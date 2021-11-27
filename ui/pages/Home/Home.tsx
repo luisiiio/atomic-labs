@@ -8,13 +8,18 @@ import { Cards } from "ui/molecules/Cards";
 import SectionOne from "./SectionOne";
 import SectionTwo from "./SectionTwo";
 import SectionThree from "./SectionThree";
+import SectionFour from "./SectionFour";
 
 import sec1img1 from "public/sec1img1.png";
 import arrowdown from "public/arrowdown.png";
+import check from "public/check.png";
 import sec2img1 from "public/sec2img1.png";
 import sec2img2 from "public/sec2img2.png";
 import sec2img3 from "public/sec2img3.png";
 import sec3img1 from "public/sec3img1.png";
+import sec4img1 from "public/sec4img1.png";
+import sec4img2 from "public/sec4img2.png";
+import sec4img3 from "public/sec4img3.png";
 
 const Home = () => {
   const router = useRouter();
@@ -123,6 +128,58 @@ const Home = () => {
         <Phases data={phases} />
         <Button onClick={sendToApplication}>¡Quiero ser parte!</Button>
       </SectionThree>
+      <SectionFour>
+        <h1>
+          ¿POR QUÉ <span> ATOMIC?</span>
+        </h1>
+        <div>
+          <article>
+            <div className="img">
+              <Image src={sec4img1} alt="people" />
+            </div>
+            <ul>
+              <li>
+                <Image src={check} alt="icon check" width={30} height={30} />
+                <p>Usamos las tecnologías más modernas.</p>
+              </li>
+              <li>
+                <Image src={check} alt="icon check" width={30} height={30} />
+                <p>Innovamos y creamos proyectos retadores.</p>
+              </li>
+            </ul>
+          </article>
+          <article>
+            <div className="img">
+              <Image src={sec4img2} alt="people" />
+            </div>
+            <ul>
+              <li>
+                <Image src={check} alt="icon check" width={30} height={30} />
+                <p>¡Trabajamos en equipo rumnbo al éxito!</p>
+              </li>
+              <li>
+                <Image src={check} alt="icon check" width={30} height={30} />
+                <p>No tenemos código de vestimenta.</p>
+              </li>
+            </ul>
+          </article>
+          <article>
+            <div className="img">
+              <Image src={sec4img3} alt="people" />
+            </div>
+            <ul>
+              <li>
+                <Image src={check} alt="icon check" width={30} height={30} />
+                <p>Realizamos actividades para tu bienestar.</p>
+              </li>
+              <li>
+                <Image src={check} alt="icon check" width={30} height={30} />
+                <p>¡Tenemos un parque al frente de la oficina!</p>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </SectionFour>
     </>
   );
 };
