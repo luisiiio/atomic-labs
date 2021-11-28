@@ -22,24 +22,14 @@ import stepOne from "public/stepOne.png";
 import stepTwoThree from "public/stepTwoThree.png";
 import stepFour from "public/stepFour.png";
 
-const iconSteps: {
-  1: StaticImageData;
-  2: StaticImageData;
-  3: StaticImageData;
-  4: StaticImageData;
-} = {
+const iconSteps = {
   1: oneactive,
   2: twoactive,
   3: threeactive,
   4: fouractive,
 };
 
-const stepImg: {
-  1: StaticImageData;
-  2: StaticImageData;
-  3: StaticImageData;
-  4: StaticImageData;
-} = {
+const stepImg = {
   1: stepOne,
   2: stepTwoThree,
   3: stepTwoThree,
@@ -54,7 +44,7 @@ const defaultData = {
 };
 
 const Application = () => {
-  const [currentStep, seCurrentStep] = useState(1);
+  const [currentStep, seCurrentStep] = useState<number>(1);
   const [data, setData] = useState(defaultData);
   const [errors, setErrors] = useState(defaultData);
   const [sendCode, setSendCode] = useState(false);
@@ -132,7 +122,9 @@ const Application = () => {
     }
     seCurrentStep(currentStep + 1);
   };
-  const prevStep = (event: MouseEvent<HTMLButtonElement>) => {
+  const prevStep = (
+    event: MouseEvent<HTMLButtonElement | HTMLParagraphElement>
+  ) => {
     event.preventDefault();
     seCurrentStep(currentStep - 1);
   };
@@ -176,7 +168,17 @@ const Application = () => {
         <div className="title">
           <span className="img">
             <Image
-              src={iconSteps[currentStep]}
+              src={
+                iconSteps[
+                  currentStep === 1
+                    ? 1
+                    : currentStep === 2
+                    ? 2
+                    : currentStep === 3
+                    ? 3
+                    : 4
+                ]
+              }
               alt="step number"
               height={50}
               width={50}
@@ -311,7 +313,17 @@ const Application = () => {
       </section>
       <article className="step-img">
         <Image
-          src={stepImg[currentStep]}
+          src={
+            stepImg[
+              currentStep === 1
+                ? 1
+                : currentStep === 2
+                ? 2
+                : currentStep === 3
+                ? 3
+                : 4
+            ]
+          }
           alt="step image"
           layout="responsive"
         />
