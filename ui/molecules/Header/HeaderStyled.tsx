@@ -5,6 +5,10 @@ const HeaderStyled = styled.header`
   position: absolute;
   z-index: 1;
 
+  article {
+    cursor: pointer;
+  }
+
   @media (min-width: 768px) {
     padding: 0 10%;
   }
