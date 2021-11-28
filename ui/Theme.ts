@@ -5,6 +5,7 @@ const theme = {
     action: "#18609C",
     white: "#FFFFFF",
     black: "#000000",
+    shadow: "#828E9E",
   },
   fonts: {
     primary: "Montserrat",
