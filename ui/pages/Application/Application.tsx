@@ -6,12 +6,18 @@ import ApplicationStyled from "./ApplicationStyled";
 import Button from "ui/atoms/Button";
 import { Input } from "ui/atoms/Input";
 import { StepsBar } from "ui/molecules/StepsBar";
+import { Modal } from "ui/molecules/Modal";
 
+import edit from "public/edit.png";
+import checkmark from "public/checkmark.png";
+import resend from "public/resend.png";
 import oneactive from "public/oneactive.png";
 import twoactive from "public/twoactiveorange.png";
 import threeactive from "public/threeactiveorange.png";
 import fouractive from "public/fouractiveorange.png";
 import stepOne from "public/stepOne.png";
+import stepTwoThree from "public/stepTwoThree.png";
+import stepFour from "public/stepFour.png";
 
 const iconSteps: {
   1: StaticImageData;
@@ -25,10 +31,33 @@ const iconSteps: {
   4: fouractive,
 };
 
+const stepImg: {
+  1: StaticImageData;
+  2: StaticImageData;
+  3: StaticImageData;
+  4: StaticImageData;
+} = {
+  1: stepOne,
+  2: stepTwoThree,
+  3: stepTwoThree,
+  4: stepFour,
+};
+
+const defaultData = {
+  name: "",
+  lastName: "",
+  phone: "",
+  code: "",
+};
+
 const Application = () => {
   const [currentStep, seCurrentStep] = useState(1);
-  const [data, setData] = useState({ name: "", lastName: "", phone: "" });
-  const [errors, setErrors] = useState({ name: "", lastName: "", phone: "" });
+  const [data, setData] = useState(defaultData);
+  const [errors, setErrors] = useState(defaultData);
+  const [sendCode, setSendCode] = useState(false);
+  const [resendCode, setResendCode] = useState(false);
+  const [validatedCode, setValidatedCode] = useState(false);
+  const [editPhone, setEditPhone] = useState(false);
 
   const handleChangeInput = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -64,16 +93,61 @@ const Application = () => {
         });
       }
     }
+    if (event.currentTarget.name === "code") {
+      if (event.currentTarget.value.length < 4) {
+        setErrors({
+          ...errors,
+          [event.currentTarget.name]: "El código es de 4 o más dígitos",
+        });
+      } else {
+        setErrors({
+          ...errors,
+          [event.currentTarget.name]: "",
+        });
+      }
+    }
   };
 
   const nextStep = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    if (currentStep === 2) {
+      setSendCode(true);
+      setTimeout(() => {
+        setSendCode(false);
+      }, 2000);
+      if (editPhone) {
+        setEditPhone(false);
+      }
+    }
+    if (currentStep === 3) {
+      setValidatedCode(true);
+      setTimeout(() => {
+        setValidatedCode(false);
+      }, 2000);
+    }
     seCurrentStep(currentStep + 1);
   };
   const prevStep = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     seCurrentStep(currentStep - 1);
   };
+
+  const handleResendCode = () => {
+    setResendCode(true);
+    setTimeout(() => {
+      setResendCode(false);
+      setSendCode(true);
+      setTimeout(() => {
+        setSendCode(false);
+      }, 2000);
+    }, 2000);
+  };
+
+  const handleEditPhone = () => {
+    seCurrentStep(currentStep - 1);
+    setEditPhone(true);
+  };
+
   return (
     <ApplicationStyled>
       <section>
@@ -98,7 +172,7 @@ const Application = () => {
             TE QUEREMOS <span>CONOCER</span>
           </h1>
           <h1 className={currentStep === 2 ? "" : "hide"}>
-            VALIDA TU <span>CELULAR</span>
+            {editPhone ? "EDITA" : "VALIDA"} TU <span>CELULAR</span>
           </h1>
           <h1 className={currentStep === 3 ? "" : "hide"}>
             CÓDIGO DE <span>VERIFICACIÓN</span>
@@ -113,6 +187,18 @@ const Application = () => {
         <h2 className={currentStep === 2 ? "subtitle" : "hide"}>
           Necesitamos validar tu número para continuar <br />
           Ingresa tu número a 10 dígitos y te enviaremos un código SMS.
+        </h2>
+        <h2 className={currentStep === 3 ? "subtitle" : "hide"}>
+          Te enviamos un SMS al número: <br />
+        </h2>
+        <h2 className={currentStep === 3 ? "subtitle" : "hide"}>
+          +52 {data.phone}{" "}
+          <article onClick={handleEditPhone}>
+            <Image src={edit} alt="edit" height={30} width={30} />
+          </article>
+        </h2>
+        <h2 className={currentStep === 3 ? "subtitle" : "hide"}>
+          Ingresa el código de verificación
         </h2>
 
         <form className={currentStep === 1 ? "form" : "hide"}>
@@ -164,10 +250,54 @@ const Application = () => {
             Continuar
           </Button>
         </form>
+        <form className={currentStep === 3 ? "form" : "hide"}>
+          <div>
+            <Input
+              name="code"
+              label="Código de verificación"
+              type="number"
+              value={data.code}
+              onChangeInput={handleChangeInput}
+              onBlurInput={handleBlurInput}
+              errors={errors.code}
+            />
+          </div>
+          <br /> <br />
+          <h2 className="subtitle">
+            ¿No recibiste el código?{" "}
+            <b
+              onClick={() => {
+                handleResendCode();
+              }}
+            >
+              Reenviar código
+            </b>
+          </h2>
+          <br /> <br />
+          <Button primary disabled={data.code.length < 4} onClick={nextStep}>
+            Validar código
+          </Button>
+        </form>
       </section>
       <article className="step-img">
-        <Image src={stepOne} alt="step one" layout="responsive" />
+        <Image
+          src={stepImg[currentStep]}
+          alt="step image"
+          layout="responsive"
+        />
       </article>
+      {sendCode && (
+        <Modal
+          icon={checkmark}
+          message="Te hemos enviado el código al número que nos proporcionaste"
+        />
+      )}
+      {resendCode && (
+        <Modal icon={resend} message="Te estamos reenviando el código..." />
+      )}
+      {validatedCode && (
+        <Modal icon={checkmark} message="Hemos validado el código" />
+      )}
     </ApplicationStyled>
   );
 };

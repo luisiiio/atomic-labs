@@ -41,8 +41,20 @@ const ApplicationStyled = styled.section`
     }
   }
   .subtitle {
+    display: flex;
+    align-items: center;
     font-size: 1.4rem;
-    margin-top: 1rem;
+    margin: 0.5rem 0;
+
+    article {
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+
+    b {
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
   }
 
   .form {
