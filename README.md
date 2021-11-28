@@ -35,7 +35,7 @@
 1. Clone this repo.
 2. Install dependencies: `yarn`
 3. Install hooks `yarn prepare`
-4. Start the server: `yarn start`
+4. Start the server: `yarn dev`
 
 The website will be available at localhost:3000
 
@@ -59,7 +59,6 @@ yarn precommit
 
 - Typescript
 - Next js (React)
-- Tailwindcss
 - Styled Components
 
 ### Devtools
@@ -74,5 +73,3 @@ yarn precommit
 - 🤖 [Luis Zepeda](http://github.com/luisiiio)
 
 ## 📖 Lincense
-
-The (MIT) Lincense
