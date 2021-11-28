@@ -60,8 +60,22 @@ const ApplicationStyled = styled.section`
     height: 10rem;
   }
 
+  .hide {
+    display: none;
+  }
+
+  .btn-back {
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+
   @media (${({ theme }) => theme.device.md}) {
     flex-direction: row;
+
+    .btn-back {
+      font-size: 1.6rem;
+      margin-top: 1.5rem;
+    }
 
     .title {
       font-size: 3rem;
