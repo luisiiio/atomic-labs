@@ -1,5 +1,6 @@
 import React, { useState, MouseEvent } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import ApplicationStyled from "./ApplicationStyled";
 
@@ -7,9 +8,11 @@ import Button from "ui/atoms/Button";
 import { Input } from "ui/atoms/Input";
 import { StepsBar } from "ui/molecules/StepsBar";
 import { Modal } from "ui/molecules/Modal";
+import { Popup } from "ui/molecules/Popup";
 
 import edit from "public/edit.png";
 import checkmark from "public/checkmark.png";
+import checkmarkq from "public/checkmarkq.png";
 import resend from "public/resend.png";
 import oneactive from "public/oneactive.png";
 import twoactive from "public/twoactiveorange.png";
@@ -58,6 +61,8 @@ const Application = () => {
   const [resendCode, setResendCode] = useState(false);
   const [validatedCode, setValidatedCode] = useState(false);
   const [editPhone, setEditPhone] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const router = useRouter();
 
   const handleChangeInput = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -148,6 +153,15 @@ const Application = () => {
     setEditPhone(true);
   };
 
+  const toggleShowPopup = () => {
+    setShowPopup(true);
+  };
+
+  const sendToPage = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    router.push("finished");
+  };
+
   return (
     <ApplicationStyled>
       <section>
@@ -199,6 +213,9 @@ const Application = () => {
         </h2>
         <h2 className={currentStep === 3 ? "subtitle" : "hide"}>
           Ingresa el código de verificación
+        </h2>
+        <h2 className={currentStep === 4 ? "subtitle" : "hide"}>
+          Por favor revisa nuestros términos y condiciones para este servicio:
         </h2>
 
         <form className={currentStep === 1 ? "form" : "hide"}>
@@ -278,6 +295,19 @@ const Application = () => {
             Validar código
           </Button>
         </form>
+        <form className={currentStep === 4 ? "form" : "hide"}>
+          <h3 onClick={toggleShowPopup}>Consulta Términos y condiciones</h3>
+          <p className="step4">
+            <span>
+              <Image src={checkmarkq} alt="check" width="20" height="20" />
+            </span>
+            Acepto los Términos y Condiciones
+          </p>
+          <br /> <br />
+          <Button primary onClick={sendToPage}>
+            Enviar
+          </Button>
+        </form>
       </section>
       <article className="step-img">
         <Image
@@ -297,6 +327,13 @@ const Application = () => {
       )}
       {validatedCode && (
         <Modal icon={checkmark} message="Hemos validado el código" />
+      )}
+      {showPopup && (
+        <Popup
+          onClick={() => {
+            setShowPopup(false);
+          }}
+        />
       )}
     </ApplicationStyled>
   );

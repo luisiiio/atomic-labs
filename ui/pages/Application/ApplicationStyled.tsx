@@ -65,6 +65,24 @@ const ApplicationStyled = styled.section`
     button {
       align-self: flex-end;
     }
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-decoration: underline;
+      cursor: pointer;
+      margin: 2rem 0;
+    }
+
+    .step4 {
+      font-size: 1.4rem;
+      display: flex;
+      align-content: center;
+
+      span {
+        margin-right: 1rem;
+      }
+    }
   }
 
   .step-img {
