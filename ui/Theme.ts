@@ -3,6 +3,7 @@ const theme = {
     primary: "#F94E09",
     secondary: "#0A2240",
     action: "#18609C",
+    warning: "#F92626",
     white: "#FFFFFF",
     black: "#000000",
     shadow: "#828E9E",
